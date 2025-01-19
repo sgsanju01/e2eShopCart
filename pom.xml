@@ -29,6 +29,11 @@
         <version>7.11.1</version>
     </dependency>
 
+		<dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.14.0</version>
+        </dependency>
     <!-- Selenium WebDriver -->
     <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
@@ -37,11 +42,21 @@
     </dependency>
 
     <!-- WebDriver Manager -->
-    <dependency>
-        <groupId>io.github.bonigarcia</groupId>
-        <artifactId>webdrivermanager</artifactId>
-        <version>5.2.0</version>
-    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.9.2</version>
+</dependency>
+
+    
+     <!-- TestNG -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.9.0</version>
+            <scope>test</scope>
+        </dependency>
 
     <!-- SLF4J for logging -->
     <dependency>

@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 					features = "/e2eDemo/src/test/java/features" ,
 					glue = {"steps"} , 
 					plugin = {"pretty" , "html:target/cucumber-reports.html"} ,
-					monochrome = false
+					monochrome = true
 					
 				)
 

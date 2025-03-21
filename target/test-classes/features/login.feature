@@ -10,7 +10,7 @@ Feature: Login functionality for SauceDemo
     Then I should be redirected to the Your Cart page
     When I click on the Checkout button
     Then I should be checkout page
-    When I fill up firstname "sanjay" and lastname "gupta" and zipcode 328722
+    When I fill up firstname "sanjay" and lastname "gupta" and zipcode "328722"
     And click on the Continue button
     Then I should on the Payment page
     And total price of purchased items

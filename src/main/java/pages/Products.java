@@ -17,6 +17,8 @@ public class Products {
 		
 		
 		By addtocartLocator = By.xpath("(//button[text()='Add to cart'])");
+		By cartLinkBtn = By.cssSelector("a.shopping_cart_link");
+		
 		
 		
 		public void addItemToCard(List<Integer> itemIndex)
@@ -28,6 +30,11 @@ public class Products {
 				
 			}
 			
+		}
+		
+		public void clickCartBtn()
+		{
+			driver.findElement(cartLinkBtn).click();
 		}
 		
 }

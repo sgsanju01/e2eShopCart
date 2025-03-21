@@ -1,6 +1,5 @@
 package steps;
 
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,7 +7,9 @@ import org.openqa.selenium.WebDriver;
 
 import base.BaseClass;
 import io.cucumber.java.en.*;
-
+import pages.CartPage;
+import pages.CheckoutPage;
+import pages.CheckoutPaymentPage;
 import pages.LoginPage;
 import pages.Products;
 
@@ -17,99 +18,107 @@ public class LoginStep {
 	WebDriver driver;
 	LoginPage loginPage;
 	BaseClass baseClass;
-	Products products;
-	
-	
-				@Given("I launch the SauceDemo application")
-				public void i_launch_the_sauce_demo_application() {
-					
-					baseClass = new BaseClass();
-					driver = baseClass.initializeDriver();
-					loginPage = new LoginPage(driver);
-					
-			
-				}
-			
-				@When("I enter username {string} and password {string}")
-				public void i_enter_username_and_password(String username, String password) {
-			
-						loginPage.addUserName(username);
-						loginPage.addUserdPassword(password);
-						
-				}
-			
-				@When("I click on the login button")
-				public void i_click_on_the_login_button() {
-			
-						loginPage.clickLoginBtn();
-				}
-			
-				@Then("I should be redirected to the inventory page")
-				public void i_should_be_redirected_to_the_inventory_page() {
-					
-						loginPage.pageTitle();
-			
-				}
+	Products productsPage;
+	CartPage cartPage;
+	CheckoutPage checkOutPage;
+	CheckoutPaymentPage checkOutPaymentPage;
 
-				
-				@When("I add the 1st and 4th items to the cart")
-				public void i_add_the_1st_and_4th_items_to_the_cart() {
-					products = new Products(driver);
-					
-					List<Integer> itemsToAdd = Arrays.asList(1,3);
-					products.addItemToCard(itemsToAdd);
-					
-					
-				}
+	@Given("I launch the SauceDemo application")
+	public void i_launch_the_sauce_demo_application() {
 
-				@When("I click cart button")
-				public void i_click_cart_button() {
-				    
-				}
+		baseClass = new BaseClass();
+		driver = baseClass.initializeDriver();
+		loginPage = new LoginPage(driver);
 
-				@Then("I should be redirected to the Your Cart page")
-				public void i_should_be_redirected_to_the_your_cart_page() {
-				   
-				}
+	}
 
-				@When("I click on the Checkout button")
-				public void i_click_on_the_checkout_button() {
-				   
-				}
+	@When("I enter username {string} and password {string}")
+	public void i_enter_username_and_password(String username, String password) {
 
-				@Then("I should be checkout page")
-				public void i_should_be_checkout_page() {
-				   
-				}
+		loginPage.addUserName(username);
+		loginPage.addUserdPassword(password);
 
-				@When("I fill up firstname {string} and lastname {string} and zipcode {int}")
-				public void i_fill_up_firstname_and_lastname_and_zipcode(String string, String string2, Integer int1) {
-				   
-				}
+	}
 
-				@When("click on the Continue button")
-				public void click_on_the_continue_button() {
-				    
-				}
+	@When("I click on the login button")
+	public void i_click_on_the_login_button() {
 
-				@Then("I should on the Payment page")
-				public void i_should_on_the_payment_page() {
-				   
-				}
+		loginPage.clickLoginBtn();
+	}
 
-				@Then("total price of purchased items")
-				public void total_price_of_purchased_items() {
-				  
-				}
+	@Then("I should be redirected to the inventory page")
+	public void i_should_be_redirected_to_the_inventory_page() {
 
-				@Then("click on Finish button")
-				public void click_on_finish_button() {
-				    
-				}
+		loginPage.pageTitle();
 
-				@Then("I should on the orderdaetails page")
-				public void i_should_on_the_orderdaetails_page() {
-				  
-				}
+	}
+
+	@When("I add the 1st and 4th items to the cart")
+	public void i_add_the_1st_and_4th_items_to_the_cart() {
+		productsPage = new Products(driver);
+
+		List<Integer> itemsToAdd = Arrays.asList(1, 3);
+		productsPage.addItemToCard(itemsToAdd);
+
+	}
+
+	@When("I click cart button")
+	public void i_click_cart_button() {
+		productsPage.clickCartBtn();
+	}
+
+	@Then("I should be redirected to the Your Cart page")
+	public void i_should_be_redirected_to_the_your_cart_page() {
+		cartPage = new CartPage(driver);
+
+		cartPage.getCartTitlePage();
+	}
+
+	@When("I click on the Checkout button")
+	public void i_click_on_the_checkout_button() {
+		cartPage.clickOnCheckOutBtn();
+	}
+
+	@Then("I should be checkout page")
+	public void i_should_be_checkout_page() {
+		checkOutPage = new CheckoutPage(driver);
+		checkOutPage.checkOutPageTitleText();
+	}
+
+	@When("I fill up firstname {string} and lastname {string} " + "and zipcode {string}")
+	public void i_fill_up_firstname_and_lastname_and_zipcode(String firstName, String lastName, String postalCode) {
+
+		checkOutPage.enterFirstName(firstName);
+		checkOutPage.enterLastName(lastName);
+		checkOutPage.enterPostalCode(postalCode);
+	}
+
+	@When("click on the Continue button")
+	public void click_on_the_continue_button() {
+
+		checkOutPage.clickContinueBtn();
+	}
+
+	@Then("I should on the Payment page")
+	public void i_should_on_the_payment_page() {
+
+		checkOutPaymentPage = new CheckoutPaymentPage(driver);
+		checkOutPaymentPage.checkOutOverview();
+	}
+
+	@Then("total price of purchased items")
+	public void total_price_of_purchased_items() {
+		checkOutPaymentPage.checkOutAmount();
+	}
+
+	@Then("click on Finish button")
+	public void click_on_finish_button() {
+		checkOutPaymentPage.clickOnFinishBtn();
+	}
+
+	@Then("I should on the orderdaetails page")
+	public void i_should_on_the_orderdaetails_page() {
+
+	}
 
 }
